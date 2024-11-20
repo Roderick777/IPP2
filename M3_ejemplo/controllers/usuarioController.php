@@ -11,6 +11,11 @@ $usuarioAuth = $usuario->iniciarSesion($_POST["email"], $_POST["password"]);
 // print_r($usuarioAuth);
 if (!empty($usuarioAuth)) {
     echo 'Sesión iniciada';
+    $baseUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}/IPP2/M3_ejemplo/";
+
+    // Redirigir usando una ruta absoluta
+    header("Location: " . $baseUrl . "index.php?autenticado=true");
+    exit();
 } else {
     echo 'Usuario no encontrado';
 }
