@@ -27,23 +27,18 @@ class UserController extends Controller
     // Maneja el registro del usuario
     public function store(Request $request)
     {
-        // Validar los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => 'nullable|string|in:user,admin',
-        ]);
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
         // Crear el usuario
-        User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'role' => $validated['role'] ?? 'user', // Rol por defecto: usuario
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'role' => 'user', // Rol por defecto: usuario
         ]);
 
-        // Redirigir con éxito
-        return redirect()->route('register.create')->with('success', 'Usuario registrado con éxito');
+        return response()->json($user);
     }
 }
