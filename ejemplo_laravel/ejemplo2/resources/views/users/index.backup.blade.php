@@ -16,7 +16,7 @@
                 <h1>Lista de Usuarios</h1>
 
                 <!-- <div class="d-flex justify-content-end align-items-center">
-                    <button class="btn btn-primary" onclick="peticion()">Ejemplo petición HTTP</button>
+                    <a class="btn btn-primary" href="../register">Registrar usuario</a>
                 </div> -->
                 <table class="table table-striped">
                     <thead>
@@ -27,7 +27,7 @@
                             <th>Fecha de Registro</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody-users">
+                    <tbody>
                         @forelse($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/ejemplo.js') }}"></script>
+    <script src="{{ asset('js/users.js') }}"></script>
 </body>
 
 </html>
